@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1559258606 source:/home/dramak/Pulpit/c++/tydzien9/funkcje.cpp
+	<iostream>
+	<fstream>
+	<string>
+	"pliki.hpp"
+
+1559574887 /home/dramak/Pulpit/c++/tydzien9/pliki.hpp
+	<iostream>
+	<fstream>
+
+1559288770 source:/home/dramak/Pulpit/c++/tydzien9/main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<memory>
+	"pliki.hpp"
+

@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1556184276 source:/home/dramak/Pulpit/c++/tydzien6/wyrazenia/main.cpp
+	<iostream>
+	"wyrazenia.hpp"
+
+1555959209 source:/home/dramak/Pulpit/c++/tydzien6/wyrazenia/wyrazenia.cpp
+	<iostream>
+	"wyrazenia.hpp"
+	<vector>
+	<string>
+
+1556262531 /home/dramak/Pulpit/c++/tydzien6/wyrazenia/wyrazenia.hpp
+	<vector>
+

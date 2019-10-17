@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1551175446 source:/home/dramak/Pulpit/ulamki/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Ulamki.h"
+
+1551087443 /home/dramak/Pulpit/ulamki/Ulamki.h
+
+1551089645 source:/home/dramak/Pulpit/ulamki/Ulamki.c
+	<stdio.h>
+	"Ulamki.h"
+

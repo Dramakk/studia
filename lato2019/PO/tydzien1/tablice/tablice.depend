@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1551174565 source:/home/dramak/Pulpit/tablice/Tablica.c
+	<stdio.h>
+	"Tablica.h"
+	<stdlib.h>
+
+1551174414 /home/dramak/Pulpit/tablice/Tablica.h
+
+1551175097 source:/home/dramak/Pulpit/tablice/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Tablica.h"
+

@@ -1,0 +1,8 @@
+#lang racket
+(require racklog)
+(define %reverse
+  (%rel (x y z w)
+         [('() y y)]
+         [((cons x y) z w)
+           (%reverse y
+             (cons x z) w)]))

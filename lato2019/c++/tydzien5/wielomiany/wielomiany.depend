@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1554448755 source:/home/dramak/Pulpit/c++/tydzien5/wielomiany/main.cpp
+	<iostream>
+	<string>
+	"wielomiany.hpp"
+
+1554449961 source:/home/dramak/Pulpit/c++/tydzien5/wielomiany/funckje.cpp
+	<iostream>
+	<string>
+	"wielomiany.hpp"
+
+1554450023 /home/dramak/Pulpit/c++/tydzien5/wielomiany/wielomiany.hpp
+

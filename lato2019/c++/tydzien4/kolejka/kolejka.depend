@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1553847917 source:/home/dramak/Pulpit/c++/tydzien4/kolejka/main.cpp
+	<iostream>
+	"kolejka.hpp"
+
+1553848114 source:/home/dramak/Pulpit/c++/tydzien4/kolejka/kolejka.cpp
+	"kolejka.hpp"
+	<iostream>
+	<string>
+
+1553103116 /home/dramak/Pulpit/c++/tydzien4/kolejka/kolejka.hpp
+	<iostream>
+	<string>
+

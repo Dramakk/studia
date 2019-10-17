@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1552639524 source:/home/dramak/Pulpit/c++/tydzien3/figury/main.cpp
+	<iostream>
+	"figury.h"
+
+1552565860 /home/dramak/Pulpit/c++/tydzien3/figury/figury.h
+
+1552639343 source:/home/dramak/Pulpit/c++/tydzien3/figury/figury.cpp
+	<iostream>
+	"figury.h"
+	<cmath>
+

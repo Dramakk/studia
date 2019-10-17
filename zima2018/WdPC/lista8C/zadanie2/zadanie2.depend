@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1545139028 source:/home/dramak/Pulpit/WdPC/lista8C/zadanie2/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

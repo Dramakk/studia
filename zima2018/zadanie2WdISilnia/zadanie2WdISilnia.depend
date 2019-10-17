@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1547074817 source:/home/dramak/Pulpit/zadanie2WdISilnia/main.c
+	<stdio.h>
+	<stdlib.h>
+

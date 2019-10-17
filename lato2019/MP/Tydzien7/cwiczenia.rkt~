@@ -1,0 +1,138 @@
+#lang racket
+
+;; definicja wyrażeń z let-wyrażeniami
+
+(struct const    (val)      #:transparent)
+(struct op       (symb l r) #:transparent)
+(struct let-expr (x e1 e2)  #:transparent)
+(struct variable (x)        #:transparent)
+(struct sum (i start stop f) #:transparent)
+(struct integral (i a b f) #:transparent)
+(struct minimum (i f) #:transparent)
+
+(define (expr? e)
+  (match e
+    [(variable s)       (symbol? s)]
+    [(const n)          (number? n)]
+    [(op s l r)         (and (member s '(+ * ^))
+                             (expr? l)
+                             (expr? r))]
+    [(let-expr x e1 e2) (and (symbol? x)
+                             (expr? e1)
+                             (expr? e2))]
+    [(sum i start stop f) (and (symbol? i)
+                               (number? start)
+                               (number? stop)
+                               (expr? f))]
+    [(integral i a b f) (and (symbol? i)
+                             (expr? a)
+                             (expr? b)
+                             (expr? f))]
+    [(minimum i f) (and (symbol? i)
+                        (expr? f))]
+    [_                  false]))
+
+;; podstawienie wartości (= wyniku ewaluacji wyrażenia) jako stałej w wyrażeniu
+
+(define (subst x v e)
+  (match e
+    [(op s l r)   (op s (subst x v l)
+                      (subst x v r))]
+    [(const n)    (const n)]
+    [(variable y) (if (eq? x y)
+                      (const v)
+                      (variable y))]
+    [(let-expr y e1 e2)
+     (if (eq? x y)
+         (let-expr y
+                   (subst x v e1)
+                   e2)
+         (let-expr y
+                   (subst x v e1)
+                   (subst x v e2)))]))
+
+;; (gorliwa) ewaluacja wyrażenia w modelu podstawieniowym
+
+(define (eval e)
+  (match e
+    [(const n)    n]
+    [(op '+ l r)  (+ (eval l) (eval r))]
+    [(op '* l r)  (* (eval l) (eval r))]
+    [(let-expr x e1 e2)
+     (eval (subst x (eval e1) e2))]
+    [(variable n) (error n "cannot reference an identifier before its definition ;)")]))
+
+;; przykładowe programy
+
+(define p1
+  (let-expr 'x (op '+ (const 2) (const 2))
+            (op '+ (const 1000) (let-expr 'y (op '+ (const 5) (const 5))
+                                          (op '* (variable 'x) (variable 'y))))))
+
+(define p2
+  (let-expr 'x (op '+ (const 2) (const 2))
+            (op '+ (const 1000) (let-expr 'x (op '+ (const 5) (const 5))
+                                          (op '* (variable 'x) (variable 'x))))))
+
+(define p3
+  (let-expr 'x (op '+ (const 2) (const 2))
+            (op '+ (const 1000) (let-expr 'y (op '+ (const 5) (const 5))
+                                          (op '* (variable 'x) (variable 'z))))))
+;;zadanie 3
+(define (decide oper)
+  (if (equal? '+ oper)
+      0
+      1))
+(define (from-quote e)
+  (cond 
+        [(number? e) (const e)]
+        [(symbol? e) (variable e)]
+        [else (let* ([oper (first e)]
+                    [args (cdr e)]
+                    [expr_args (map from-quote args)])
+                (foldr (lambda (v l) (op oper v l)) (const (decide oper)) expr_args))]))
+(from-quote '(+ 2 (* 1 2) 3))
+;;zadanie 2
+#|[(cond-e xs) (and (list? xs)
+               (andmap cond-clause? xs))]
+[(lambda args exp) (and (list? args)
+                        (andmap symbol? args)
+                        (expr? exp))]|#
+;;Racket interpretuje naszego Racketa2
+;;Racket to nasz meta język
+;;Racket2 to nasz język przedmiotowy (język o którym mówimy za pomocą meta języka)
+(struct if-e (con e1 e2))
+(struct cond-e (xs)) ;;bez else
+(struct lambda (args expr))
+(define (cond-clause? e)
+  (and (pair? e)
+       (expr? (car e))
+       (expr? (cdr e))))
+;;zadanie 7
+(define (append! xs ys)
+  ;;xs not null
+  (if (equal? (mcdr xs) null)
+      (set-mcdr! xs ys)
+      (append! (mcdr xs) ys)))
+(define (make-cycle xs)
+  ;;xs not null
+  (append! xs xs))
+;;zadanie 6
+(define (is_free x e)
+  (match e
+    [(const n) #f]
+    [(variable y) (equal? x y)]
+    [(op s l r) (or (is_free x l) (is_free x r))]
+    [(let-expr y e1 e2) (if (equal? x y)
+                            (is_free x e1)
+                            (or (is_free x e1)
+                                (is_free x e2)))]))
+(define (simplify e)
+  (match e
+    [(let-expr x e1 e2) (if (is_free x e2)
+                            (let-expr x (simplify e1) (simplify e2))
+                            (simplify e2))]
+    [_ e]))
+(simplify (let-expr 'x (op '+ (const 2) (const 2) )
+(let-expr 'y (op '* (const 3) (variable 'x ) )
+(op '+ (const 7) (variable 'x ) ) ) ))

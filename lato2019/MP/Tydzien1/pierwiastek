@@ -1,0 +1,30 @@
+#lang racket
+;;Użyte zostały 4 funkcje podane na wykładzie:
+;;-abs
+;;-dist
+;;-good-enough?
+;;-cube-iter
+(define (cube x)
+  (* x x x))
+(define (abs x)
+  (if (< x 0)
+      (- x)
+      x))
+(define (dist x y)
+  (abs (- x y)))
+(define (approx x y)
+  (/ (+ (/ x (* y y)) (* 2 y)) 3))
+(define (cube-root x)
+  (define (good-enough? x y)
+  (< (dist x (cube y)) 0.00000001))
+(define (cube-iter x g)
+  (if (good-enough? x g)
+      g
+      (cube-iter x (approx x g))
+  ))
+  (cube-iter x (/ x 2.0)))
+(cube-root -64)
+(cube-root 125)
+(cube-root 1)
+(cube-root 27)
+(cube-root -2)

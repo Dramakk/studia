@@ -1,0 +1,51 @@
+autor: Dawid Żywczak
+data: 17 marca 2019 r.
+
+W obu przypadkach korzystał będę z indukcji względem struktury listy.
+
+Twierdzenie: Dla każdego xs i ys oraz pewnej jednoargumentowej procedury f, jeśli (list? xs) i (list? ys) to
+(map f (append xs ys)) = (append (map f xs) (map f ys))
+
+Weźmy dowolne ys i f takie, że (list? ys) i f jest jednoargumentową procedurą.
+Baza: Niech (null? xs). Wtedy L = (map f (append null ys)) = [z def. append] (map f ys)
+P = (append (map f null) (map f ys) = [z def map oraz append] (map f ys)
+Zatem L=P. Czyli przypadek bazowy spełnia nasze twierdzenie.
+Krok: Weźmy dowolne xs, takie że (list? xs) i (not (null? xs)) oraz dowolny element x i założmy, że twierdzenie zachodzi dla tego xs
+tzn. (map f (append xs ys)) = (append (map f xs) (map f ys))
+Pokażemy, że:
+(map f (append (cons x xs) ys)) = (append (map f (cons x xs)) (map f ys))
+L = (map f (append (cons x xs) ys)) = [z def. append] (map f (cons x (append xs ys))) = 
+= [z def. map] (cons (f x) (map f (append xs ys)) = [z założenia] (cons (f x) (append (map f xs) (map f ys))) =
+= [z def. append] (append (cons (f x) (map f xs)) (map f ys)) = [z def. map] (append (map f (cons x xs)) (map f ys)) = P
+Zatem L=P, a z tego i zasady indukcji dla list wnioskuję, że powyższe twierdzenie zachodzi dla dowolnych xs, ys, takich że
+(list? xs) i (list? ys).
+
+Twierdzenie: Dla każdego xs i ys oraz pewnego jednoargumentowego predykatu p?, jeśli (list? xs) i (list? ys) to
+(filter p? (append xs ys)) = (append (filter p? xs) (filter p? ys))
+
+Weźmy dowolne ys i jednoargumentowy predykat p?.
+Baza: Niech (null? xs). Wtedy L = (filter p? (append null ys)) = [z def. append] (filter p? ys)
+P = (append (filter p? null) (filter p? ys)) = [z def. filter] (append null (filter p? ys)) = [z def. append] = (filter p? ys)
+Zatem L=P. Twierdzenie prawdziwe dla przypadku bazowego.
+Krok: Weźmy dowolne xs, takie że (list? xs) i (not (null? xs)) oraz dowolny element x i założmy, że twiedzenie zachodzi dla tego xs
+tzn. (filter p? (append xs ys)) = (append (filter p? xs) (filter p? ys)).
+Pokażemy, że:
+(filter p? (append (cons x xs) ys)) = (append (filter p? (cons x xs)) (filter p? ys))
+L = (filter p? (append (cons x xs) ys)) = [z def. append] (filter p? (cons x (append xs ys))) Teraz mamy dwa przypadki:
+(1) Element x spełnia predykat p?
+(2) Element x nie spełnia predykatu p?
+Rozważmy przypadek (1):
+Załóżmy, że x spełnia predykat p?.
+(filter p? (cons x (append xs ys))) = [z def. filter] (cons x (filter p? (append xs ys)) =
+= [z założenia] (cons x (append (filter p? xs) (filter p? ys))) =
+= [korzystając z założenia (1) i def. append] (append (cons (p? x) (filter p? xs)) (filter p? ys)) =
+= [z def filter] (append (filter p? (cons x xs)) (filter p? ys))
+Zatem L=P, więc twierdzenie zachodzi dla tego przypadku.
+Rozważmy przypadek (2):
+Założmy, że x nie spełnia predykatu p?.
+(filter p? (cons x (append xs ys)) = [z def. filter] (filter p? (append xs ys)) = [z założenia] (append (filter p? xs) (filter p? ys)) =
+= [korzystając z tego, że x nie spełnia predykatu p? możemy go bezkarnie "dorzucić", bo z definicji filter zostanie on "odsiany"]
+= (append (filter p? (cons x xs) (filter p? ys))
+Zatem L=P, więc twierdzenie zachodzi dla tego przypadku.
+Twierdzenie jest prawdziwe dla obu przypadków zatem z tego oraz zasady indukcji dla list wnioskuję, że twierdzenie jest prawdziwne dla
+każdych xs i ys, takich że (list? xs) i (list? ys) oraz dowolnego jednoargumentowego predykatu p?.

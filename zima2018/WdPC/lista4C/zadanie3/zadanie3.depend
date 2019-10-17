@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1542750326 source:/home/dramak/Pulpit/WdPC/lista4C/zadanie3/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+

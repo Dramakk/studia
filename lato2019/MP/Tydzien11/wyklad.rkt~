@@ -1,0 +1,7 @@
+#lang racket
+
+(define (sorted? l)
+	(cond   [(null? l) #t]
+		[(null? (cdr l)) #t]
+		[else (and (<= (car l) (cadr l))
+				(sorted? (cdr l)))]))

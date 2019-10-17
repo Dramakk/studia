@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1558558868 source:/home/dramak/Pulpit/c++/tydzien8/bst/main.cpp
+	<iostream>
+	"bst.hpp"
+
+1558560101 /home/dramak/Pulpit/c++/tydzien8/bst/bst.hpp
+	<iostream>
+	<type_traits>
+	<functional>
+	"funkcje.cpp"
+
+1558556902 source:/home/dramak/Pulpit/c++/tydzien8/bst/funkcje.cpp
+
+1558560108 /home/dramak/Pulpit/c++/tydzien8/bst/funkcje.cpp
+	"bst.hpp"
+	<iostream>
+

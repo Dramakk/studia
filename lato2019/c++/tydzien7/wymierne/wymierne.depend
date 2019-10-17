@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1557433301 source:/home/dramak/Pulpit/c++/tydzien7/wymierne/main.cpp
+	<iostream>
+	"funkcje.hpp"
+	<climits>
+
+1557432947 /home/dramak/Pulpit/c++/tydzien7/wymierne/funkcje.hpp
+	<iostream>
+	<exception>
+
+1557433967 source:/home/dramak/Pulpit/c++/tydzien7/wymierne/ulamki.cpp
+	<iostream>
+	<cmath>
+	"funkcje.hpp"
+	<climits>
+	<vector>
+
