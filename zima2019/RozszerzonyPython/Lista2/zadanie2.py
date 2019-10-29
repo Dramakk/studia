@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-class Formula(object):
+
+class Formula:
   def __init__(self, left, right):
     self.left = left
     self.right = right
@@ -12,20 +13,20 @@ class Formula(object):
     raise NotImplementedError
 
   def is_tautology(self, vars):
-    def set_up_vars(i, vars):
+    def permutations(i, vars):
       ans = {}
-      for x in vars:
+      for var in vars:
         if i % 2 == 0:
-          ans[x] = False
+          ans[var] = False
         else:
-          ans[x] = True
+          ans[var] = True
         i >>= 1
       return ans
 
-    variables_no = len(vars)
-    for i in range((1 << variables_no)):
-      tmp_vars = set_up_vars(i, vars)
-      if not self.oblicz(tmp_vars):
+    how_many_vars = len(vars)
+    for i in range((1 << how_many_vars)):
+      sigma = permutations(i, vars)
+      if not self.oblicz(sigma):
         return False
 
     return True
@@ -75,6 +76,17 @@ class Neg(Formula):
     return not (self.expr.oblicz(vars))
 
 
+class Eq(Formula):
+  def __int__(self, left, right):
+    super().__init__(left, right)
+
+  def __str__(self):
+    return f'({self.left} <=> {self.right})'
+
+  def oblicz(self, vars):
+    return self.left.oblicz(vars) == self.right.oblicz(vars)
+
+
 class _True(Formula):
   def __str__(self):
     return 'true'
@@ -106,10 +118,8 @@ class Zmienna(Formula):
 
 
 if __name__ == "__main__":
-    print('Start')
-
     x, y, z = Zmienna('x'), Zmienna('y'), Zmienna('z')
-    p = Or(x,y)
+    p = Or(x, y)
     q = And(z, p)
 
     env = {
@@ -119,10 +129,16 @@ if __name__ == "__main__":
     }
     print(And(Zmienna('x'), Or(Neg(Zmienna('x')), Zmienna('x'))))
 
-    print(f'{q.__str__()} <=> {q.oblicz(env)}')
+    print(q, q.oblicz(env))
 
-    p = Or(Zmienna('x'), Neg(Zmienna('x')))
-    print(p.__str__(), ' tautologia: ', p.is_tautology(env))
+    p = Eq(Zmienna("x"), Zmienna("x"))
+    print(p, p.oblicz(env))
+    print(p, "tautologia: ", p.is_tautology(env))
 
-    p = And(Or(Zmienna('x'), Neg(Zmienna('x'))), Or(Zmienna('y'), Neg(Zmienna('y'))))
-    print(p.__str__(), ' tautologia: ', p.is_tautology(env))
+    p = Impl(Or(And(Zmienna("x"), Zmienna("y")), Zmienna("x")), Neg(Zmienna("x")))
+    print(p, 'tautologia: ', p.is_tautology(env))
+
+    p = Impl(Zmienna("x"), Or(Zmienna("x"), Zmienna("y")))
+    print(p, 'tautologia: ', p.is_tautology(env))
+
+
