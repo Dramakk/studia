@@ -1,0 +1,21 @@
+      read  1
+      read  2
+      load  1
+      sub   =1
+      store 1
+loop: load  1
+      jgtz  TAK
+      write =1
+      halt  
+TAK:  read  3
+      load  1
+      sub   =1
+      store 1
+      load  3
+      sub   2
+      jgtz  TAK2
+      write =0
+      halt  
+TAK2: load  3
+      store 2
+      jump  loop

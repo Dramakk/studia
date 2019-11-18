@@ -1,0 +1,16 @@
+        read  1
+        read  2
+        load  2
+PETLA:  jzero KONIEC
+        load  1
+        div   2
+        mult  2
+        sub   1
+        mult  =-1
+        store 3
+        load  2
+        store 1
+        load  3
+        store 2
+        jump  PETLA
+KONIEC: write 1

@@ -1,0 +1,46 @@
+      read  1
+      read  2
+      load  1
+      sub   =1
+      store 1
+      load  2
+      div   =2
+      mult  =2
+      store 3
+      load  2
+      sub   3
+      jgtz  TAK
+      mult  =-1
+TAK:  jzero TAK2
+      load  =1
+      store 4
+      jump  loop
+TAK2: load  =0
+      store 4
+loop: load  1
+      jgtz  cd
+      write =1
+      halt  
+cd:   read  2
+      load  1
+      sub   =1
+      store 1
+      load  2
+      div   =2
+      mult  =2
+      store 3
+      load  2
+      sub   3
+      jgtz  TAK3
+      mult  =-1
+TAK3: jzero TAK4
+      load  =1
+      sub   4
+      jzero loop
+      write =0
+      halt  
+TAK4: load  =0
+      sub   4
+      jzero loop
+      write =0
+      halt  
