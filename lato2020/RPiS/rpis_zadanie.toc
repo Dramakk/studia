@@ -1,0 +1,2 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Redukcja problemu}{2}{section.1}

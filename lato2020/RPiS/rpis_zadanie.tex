@@ -1,0 +1,78 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\title{Zamiennik części kolokwium - zadanie 1}
+\subtitle{Rachunek prawdopodobieństwa i statystyka}
+\author{Karolina Jeziorska, Dawid Żywczak}
+\date{19 kwietnia 2020}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+\section{Redukcja problemu}
+Gęstośc standardowego rozkładu normalnego wraża się wzorem
+\begin{center}
+$ f(x)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})$, $x \in \mathbb{R}$
+\end{center}
+A zatem dystrybuanta zadana jest wzorem
+\begin{center}
+$ \phi(t)=\int^{t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) dx$
+\end{center}
+Jak dowiadujemy się z treści zadania, całka ta nie ma niestety przedstawienia za pomocą funkcji elementarnych. Aby policzyć jej wartość zredukujmy problem do policznnia innej, znacznie prostszej całki:
+\begin{center}
+$ G(t)=\int^{t}_{0}\exp(-\frac{x^2}{2}) dx$
+\end{center}
+Aby skorzystać z funckji G udowodnijmy najpierw, że
+\begin{center}
+$\phi(t) = 1 - \phi(-t)$
+\end{center}
+\begin{proof}
+Zacznijmy od prawej strony równości
+\begin{center}
+$1 - \phi(-t) = 
+\int^{\infty}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})dx - \int^{-t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})dx = \int^{\infty}_{-t} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2})dx$
+\end{center}
+Teraz podstawmy $v = -x$, $dv=-dx$
+\begin{center}
+$-\int^{-\infty}_{t} \frac{1}{\sqrt{2\pi}}\exp(-\frac{(-v)^2}{2})dv =$\\
+$\int^{t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{v^2}{2})dv = \phi(t)$
+\end{center}
+\end{proof}
+Skorzystajmy teraz z funkcji $G(x)$ w celu obliczenia wartości naszej dystrybuanty
+\begin{center}
+$\phi(t) = 1 - \phi(-t)$\\
+$\phi(t) + \phi(-t) = 1$\\
+$\int^{t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) + \int^{-t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) = 1$\\
+$\int^{-t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) + 
+\int^{0}_{-t} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) + 
+\int^{t}_{0} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) +
+\int^{-t}_{-\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) = 1$
+\end{center}
+Korzystając z parzystości funkcji gęstości mamy
+\begin{center}
+$2\cdot \int^{t}_{0} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) + 
+2\cdot \phi(-t) = 1$\\
+$2\cdot \int^{t}_{0} \frac{1}{\sqrt{2\pi}}\exp(-\frac{x^2}{2}) + 
+2 - 2\cdot \phi(t) = 1$\\
+$\frac{1}{\sqrt{2\pi}}\cdot G(x) + \frac{1}{2} = \phi(t)$
+\end{center}
+Zatem aby otrzymać wartość dystrybuanty dla danego t, wystarczy obliczyć wartość powyższego wyrażenia korzystając np. z metody Romberga.
+\end{document}

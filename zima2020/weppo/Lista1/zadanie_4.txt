@@ -1,0 +1,1 @@
+Umiem korzystać z narzędzi deweloperskich w Chrome i z debuggera w VSCode.

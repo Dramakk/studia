@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Wprowadzenie}{}% 1
+\BOOKMARK [1][-]{section.2}{Cel generator\363w liczb losowych}{}% 2
+\BOOKMARK [1][-]{section.3}{Generatory o jednostajnym rozk\233adzie}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Generatory multiplikatywne/mieszane}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Generatory oparte na rejestrach przesuwnych}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Generatory Fibonacciego}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Generatory nieliniowe o jednostajnym rozk\233adzie}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Kombinacje generator\363w}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Generatory o dowolnych rozk\233adach}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Metody dla rozk\233ad\363w ciag\233ych}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Metoda odwracania dystrybuanty}{subsection.4.1}% 11
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Metoda eliminacji}{subsection.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Metody dla rozk\233ad\363w dyskretnych}{section.4}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Metoda odwracania dystrybuanty}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Metoda r\363wnomiernego rozbicia przedzia\233u \(0, 1\)}{subsection.4.2}% 15
+\BOOKMARK [1][-]{section.5}{Rozk\233ady wielowymiarowe}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{Wielowymiarowy rozk\233ad normalny}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Testowanie poprawnosci generator\363w}{}% 18
+\BOOKMARK [2][-]{subsection.6.1}{Test 2}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.2}{Test Ko\233omogorowa}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.3}{Test pokerowy}{section.6}% 21

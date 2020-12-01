@@ -1,0 +1,22 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Wprowadzenie}{2}{section.1}
+\contentsline {section}{\numberline {2}Cel generator\IeC {\'o}w liczb losowych}{2}{section.2}
+\contentsline {section}{\numberline {3}Generatory o jednostajnym rozk\IeC {\l }adzie}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Generatory multiplikatywne/mieszane}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Generatory oparte na rejestrach przesuwnych}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Generatory Fibonacciego}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Generatory nieliniowe o jednostajnym rozk\IeC {\l }adzie}{5}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Kombinacje generator\IeC {\'o}w}{6}{subsection.3.5}
+\contentsline {section}{\numberline {4}Generatory o dowolnych rozk\IeC {\l }adach}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Metody dla rozk\IeC {\l }ad\IeC {\'o}w ci\IeC {\k a}g\IeC {\l }ych}{7}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Metoda odwracania dystrybuanty}{7}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Metoda eliminacji}{8}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Metody dla rozk\IeC {\l }ad\IeC {\'o}w dyskretnych}{10}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Metoda odwracania dystrybuanty}{10}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Metoda r\IeC {\'o}wnomiernego rozbicia przedzia\IeC {\l }u (0, 1)}{11}{subsubsection.4.2.2}
+\contentsline {section}{\numberline {5}Rozk\IeC {\l }ady wielowymiarowe}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Wielowymiarowy rozk\IeC {\l }ad normalny}{12}{subsection.5.1}
+\contentsline {section}{\numberline {6}Testowanie poprawno\IeC {\'s}ci generator\IeC {\'o}w}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}Test $\chi ^{2}$}{13}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Test Ko\IeC {\l }omogorowa}{13}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Test pokerowy}{14}{subsection.6.3}

@@ -1,0 +1,12 @@
+### Starting build.
+# Target: Perm.mli.depends, tags: { extension:mli, file:Perm.mli, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep.opt -modules Perm.mli > Perm.mli.depends
+# Target: Perm.cmi, tags: { byte, compile, extension:mli, file:Perm.mli, interf, ocaml, quiet }
+/usr/bin/ocamlc.opt -c -o Perm.cmi Perm.mli
+# Target: Perm.ml.depends, tags: { extension:ml, file:Perm.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep.opt -modules Perm.ml > Perm.ml.depends
+# Target: Perm.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Perm.cmo, file:Perm.ml, implem, ocaml, quiet }
+/usr/bin/ocamlc.opt -c -o Perm.cmo Perm.ml
+# Target: Perm.cma, tags: { byte, dont_link_with, extension:cma, file:Perm.cma, library, link, ocaml, quiet }
+/usr/bin/ocamlc.opt -a Perm.cmo -o Perm.cma
+# Compilation successful.

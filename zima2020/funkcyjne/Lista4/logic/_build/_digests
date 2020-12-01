@@ -1,0 +1,8 @@
+"Rule: ocaml: mllib & cmo* -> cma (%=logic )": "\022\230\152D\0003\223\tm\216e\220/\192Q6"
+"Rule: ocaml dependencies ml (%=logic )": "W\194`e3,\226\240\238\228=\227s\210\167\207"
+"Resource: /home/dramak/Pulpit/things/studia/zima2020/funkcyjne/Lista4/logic/logic.ml": "=\205N\140\026\159\218+\172W,\250\210\026\020\024"
+"Rule: ocaml: ml & cmi -> cmo (%=logic )": "\197j\206\221\015|\233\227\173\198\161\148\003\195\215u"
+"Resource: /home/dramak/Pulpit/things/studia/zima2020/funkcyjne/Lista4/logic/logic.mllib": ">\208|K\146\191E\166@\251\011\165a\167\209I"
+"Rule: ocaml: mli -> cmi (%=logic )": "M\176\249m\144\021zA\186\165\206\158\207\135\218#"
+"Resource: /home/dramak/Pulpit/things/studia/zima2020/funkcyjne/Lista4/logic/logic.mli": "\184\179\153\150\012\188;\135\203\178\230\"\150\1546\250"
+"Rule: ocaml dependencies mli (%=logic )": "\1771z|\028\n\215^o\017\208\173U9\185\156"

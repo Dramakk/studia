@@ -1,0 +1,300 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{textcomp}
+\newtheorem{thm}{Twierdzenie}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\title{Generowanie liczb (pseudo)losowych}
+\subtitle{Seminarium: Algorytmy numeryczne i graficzne}
+\author{Dawid Żywczak}
+\date{06 kwietnia 2020}
+\usetheme{Warsaw}
+\begin{document}
+	\frame {
+		\titlepage
+	}
+	\frame {
+		\frametitle{Wprowadzenie}
+		\begin{itemize}
+			\item RNG w życiu codziennym
+			\item Zastosowania
+			\item Co będziemy tak właściwie robić?
+		\end{itemize}
+	}
+	\frame{
+		\frametitle{Generatory liniowe}
+		\framesubtitle{Od czego się to wszystko zaczęło?}
+		Pierwszy zaproponowany generator liniowy (algorytm kwadratowy von Neumanna)\\
+		\begin{center}
+		$F(X_n) = X_{n+1}$ gdzie funkcja F oblicza $Z = X_n^2$, jeżeli trzeba uzpełnia liczbę Z wiodącymi zerami, tak aby miała $2 \cdot N$ cyfr, a następnie wycina z liczby Z N środkowych cyfr.
+		\end{center}
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Ogólna postać generatorów i pojęcie okresu}
+	    Ogólna postać generatora liniowego
+	    \begin{center}
+	    $X_{n+1} = (a_1X_n + a_2X_{n-1} + ... + a_kX_{n-k+1} + c)$ mod m
+	    \end{center}
+	    Dodatkowo zdefiniujmy pojęcie okresu
+	    \begin{center}
+	    Niech $P = \min \{i: X_i = X_0, i > 0\}$ oraz $v \in \mathbb{N}$ wtedy jeśli 
+$\forall i$, $i \geq v$ zachodzi $X_i=X_{i+j \cdot P}, \: j=1, 2,...$ to fragment ciągu $X_0, X_1,..., X_{v+P-1}$ nazywamy okresem aperiodyczności ciągu, v parametrem aperiodyczności, a liczbę P okresem ciągu.
+	    \end{center}
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Jak dobierać liczbę m i a?}
+	    Dla generatora multiplikatywnego najczęściej wykorzystywany jest punkt 4 twierdzenia 3. Czyli aby otrzymać maksymalny okres, powinniśmy dobierać $m=2^e$ $e\geq4$ oraz $a=3$ mod 8 lub $a=5$ mod 8.\\
+	    Inna możliwość to m pierwsze. (Dokładnie - twierdzenia 1, 2, 3)
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Wady generatorów multiplikatywnych}
+	    \begin{itemize}
+	    \item Okresowość ostatnich bitów
+	    \item Struktura przestrzenna
+	    \end{itemize}
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Generatory oparte na rejestrach przesuwnych}
+		Ogólna postać generatorów opartych na rejestrach przesuwnych
+	    \begin{center}
+		$b_i=(a_1b_{i-1}+...+a_kb_{i-k})$ mod 2, $i=k+1, k+2,...$
+		\end{center}
+		Korzystamy z faktu, że łatwo zaimplementować na komputerze. Mając wzór na poszczególne bity, możemy generować
+		\begin{center}
+			$U_i=\sum_{j=1}^L2^{-j}b_{is+j}=0.b_{is+1}b_{is+2}...b_{is+L}$ gdzie s jest ustaloną liczbą naturalną
+		\end{center}
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Generatory Tauswortha}
+		Generator Tauswortha:
+		\begin{itemize}
+		\item $B=((A<<q)$ xor $A) << (L-p)$
+		\item $B=((A<<s)$ xor $A) >> (L-s)$
+		\item Return A
+		\end{itemize}
+	}
+	\frame{
+	    \frametitle{Generatory liniowe}
+		\framesubtitle{Generatory Fibonacciego}
+		Generatory Fibonacciego:
+		\begin{itemize}
+		\item Ogólna forma $X_n=X_{n-1}+X_{n-2}$ mod $m$
+		\item Uogólnienie
+		\item Zmiana działania
+		\end{itemize}
+	}
+	\frame{
+	    \frametitle{Generatory nieliniowe}
+		\framesubtitle{Wzory na generatory nieliniowe}
+		Generatory nieliniowe:
+		\begin{itemize}
+		\item Eichenauera-Lehna $X_{n+1}=(aX_n^{-1} + b)$ mod m
+		\item Eichenauera-Hermanna $X_{n+1}=(a(n+n_0) + b)^{-1}$ mod m
+		\end{itemize}
+	}
+	\frame{
+	    \frametitle{Kombinacje generatorów}
+		\framesubtitle{Potrzebne definicje}
+		Załóżmy, że mamy zmienne losowe X i Y określone na zbiorze S=\{1, 2,..., n\} o rozkładach prawdopodobieństwa równych:
+\begin{center}
+$P(X=i)=p_i$, $P(Y=i)=q_i$, i=1, 2,..., n
+\end{center}
+Zdefiniujmy teraz normę wektora t=$(t_1, t_2,..., t_n)$ dla ustalonego p=1, 2,...,$\infty$ jako:
+\begin{center}
+$\|t\|=(\sum_{i=1}^nt_i^p)^\frac{1}{p}$
+\end{center}
+Teraz dla zdefiniowanej wyżej zmiennej X wprowadźmy miarę podobieństwa do rozkładu jednostajnego na zbiorze S:
+\begin{center}
+$\delta (X)=\|(p_1, p_2,..., p_n) - (\frac{1}{n}, \frac{1}{n}, ..., \frac{1}{n})\|$
+\end{center}
+	}
+	\frame{
+	    \frametitle{Kombinacje generatorów}
+		\framesubtitle{Własności}
+		Okazuje się, że dla "dobrych" działań $\circ$ zachodzi:
+		\begin{center}
+$\delta (X \circ Y) \leq min\{\delta (X), \delta (Y)\}$
+\end{center}
+Czyli ciąg $(X_1 \circ Y_1, X_2 \circ Y_2,...)$ powinien być bardziej równomiernie rozłożony niż każdy z ciągów składowych.
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    Dla rozkładów ciągłych:
+		\begin{itemize}
+			\item Metoda odwracania dystrybuanty
+			\item Metoda eliminacji
+		\end{itemize}
+		Metody dla rozkładów dyskretnych są podobne i ich opis znajduje się w notatce.
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Metoda odwracania dystrybuanty}
+		Metoda odwracania dystrybuanty korzysta z faktu, że dla zmiennej losowej U o rozkładzie jednostanym U(0,1) oraz ściśle rosnącej i ciągłej dystrybuanty F, zmienna X=$F^{-1}(U)$ ma rozkład prawdopodobieństa o dystrybuancie F, ponieważ
+\begin{center}
+$P(X\leq x) = P(F^{-1}(U)\leq x)=P(U\leq F(x))=F(x)$
+\end{center}
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Metoda odwracania dystrybuanty - przykład}
+		Przykład metody odwracania dystrybuanty dla rozkładu wykładniczego
+		\begin{center}
+		$F(x)=1-e^{-x}$\\
+		$x=1-e^{-y}$\\
+		$1-x=e^{-y}$\\
+		$-ln(1-x)=y=F^{-1}(x)$\\
+		\end{center}
+		Zauważmy, że $1-x$ zachowuje się jak zmienna losowa o rozkładzie jednostajnym $U(0,1)$ zatem $F^{-1}(x)=-lnU$.
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Metoda eliminacji}
+		Metoda eliminacji wymaga wprowadzenia najpierw kilku oznaczeń oraz twierdzeń. Omówimy działanie metody eliminacji dla dwuwymiarowego punktu losowego oraz podamy schemat dla uogólnionej na k wymiarów wersji. Uogólnienie to jest dokładnie omówione w notatce.
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Schemat dla dwóch wymiarów}
+		Ogólny schemat można przedstawić w dwóch krokach:\\ Niech f jest gęstością oczekiwanego rozkładu ppb, dodatnią na pewnym przedziale (a,b) i ograniczoną przez stałą $d>0$. Wtedy liczba X generowana według poniższego schematu ma rozkład o gęstości f(x)\\
+		\begin{itemize}
+		\item Generuj dwie niezależne zmienne losowe $U_1~U(a,b)$ i $U_2~U(0,d)$
+		\item Jeśli $U_2 \leq f(U_1)$ to X = $U_1$ wpp. powtórzyć generowanie.
+		\end{itemize}
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Uzasadnienie}
+		Niech $A=\{(x,u): a\leq x \leq b$, $0 \leq u \leq f(x)\}$.
+		\begin{thm}
+Niech $(X_1, U_1), (X_2, U_2), ...$ będzie ciągiem punktów losowych o rozkładzie równomiernym na prostokącie $(a,b) \times (0,d)$ i niech (X,U) będzie pierwszym punktem tego ciągu, który wpada do zbioru A. Wtedy punkt losowy (X,U) ma rozkład jednostajny na zbiorze A.
+\end{thm}
+}
+\frame{
+\begin{proof}
+Rozważmy pozdbiór B zbioru A i niech $l_2(B)$ oznacza jego pole powierzchni. Chcemy udowodnić, że $P((X,U) \in B) = l_2(B)/l_2(A)$.
+\begin{center}
+$P((X,U) \in B) = \sum_{i=1}^\infty P((X_1, U_1) \notin A, ..., (X_{i-1}, U_{i-1}) \notin A, (X_i, U_i) \in B) = \sum_{i=1}^\infty (1 - \frac{l_2(A)}{(b-a)d})^{i-1}\frac{l_2(B)}{(b-a)d} = $(z sumy szeregu geometrycznego)$\frac{l_2(B)}{l_2(A)}$
+\end{center}
+\end{proof}
+	}
+	\frame{
+	    \frametitle{Generatory o dowolnym rozkładzie}
+	    \framesubtitle{Uzasadnienie cz.2}
+		\begin{thm}
+a) Jeżeli U ma rozkład jednostajny U(0,1), X ma rozkład o gęstości f(x) oraz X i U są niezależne, to punkt losowy (X, Uf(X)) ma rozkład jednostajny na zbiorze A.\\
+b) Jeżeli punkt losowy (X, U) ma rozkład jednostajny na zbiorze A, to zmienna losowa X ma rozkład o gęstości f(x).
+\end{thm}
+	}
+	\frame{
+		\begin{proof}
+a) Jeżeli U ma rozkład jednostajny U(0,1), to dla każdego ustalonego x zmienna losowa $V=Uf(x)$ ma rozkład jednostajny $U(0,f(x))$. Dla ustalonego x i dla danego zbioru $B\subset A$ oznaczamy $B_x$=$\{u:(x,u)\in B\}$
+\begin{center}
+$P((X,Uf(X)) \in B) = \int(\int_{B_x}\frac{dv}{f(x)})f(x)dx = \int\int_Bdvdx = l_2(B) = \frac{l_2(B)}{l_2(A)}$
+\end{center}
+czyli (X, Uf(X)) ma rozkład jednostajny na zbiorze A.\\
+b) Oznaczmy $A_t=\{(x,u): a\leq x \leq t, 0 \leq u \leq f(x) \}$. Wtedy
+\begin{center}
+$P(X \leq t)=P((X, U) \in A_t) = \int_a^t\int_0^{f(x)}\frac{dudx}{l_2(A)}=\int_a^tf(x)dx$
+\end{center}
+czyli f(x) jest gęstością zmiennej losowej X.
+\end{proof}
+}
+\frame{
+\frametitle{Generatory o dowolnym rozkładzie}
+\framesubtitle{Ogólny schemat metody eliminacji}
+		1. Wybierz gęstośc g, żeby generowanie liczb losowych o tej gęstości było łatwe i szybkie oraz wyznacz stałą $c>0$, taką żeby $f(x)\leq cg(x)$ dla wszystkich x.\\
+Ze względu na ten warunek gęstość g, będziemy nazywać dominującą. Za obszar $\Omega$ przyjąć $\Omega = \{(x,u):x \in \mathbb{R}^k, 0 \leq u \leq cg(x) \}$.\\
+2. Wygeneruj punkt losowy X o rozkładzie z gęstością g oraz liczbę losową U~U(0,1), wtedy punkt losowy (X, cUg(X)) ma rozkład jednostajny na zbiorze $\Omega$.\\
+3. Powtarzać generowanie według p. 2, dopóki kolejno wygenerowany punkt nie wpadnie do zbioru $A=\{(x,u):x \in \mathbb{R}^k, 0 \leq u \leq f(x)\}$, tzn. dopóki nie zostanie spełniony warunek akceptacji
+\begin{center}
+$U \leq \frac{f(X)}{cg(X)}$
+\end{center}
+}
+
+\frame{
+\frametitle{Generatory o dowolnym rozkładzie}
+\framesubtitle{Jak dobrać współczynnik c?}
+		Zastanówmy się jak wyznaczyć stałą c, tak aby warunek akceptacji był jak najszybciej osiągany. Możemy to osiągnąć przez dobranie wartości c takiej, żeby prawdopodobieństwo spełnienia warunku akceptacji było jak największe tzn.
+\begin{center}
+$P(Ucg(X) \leq f(X)) = \int_{\mathbb{R}^k}g(x)dx\int_0^{f(x)/cg(x)}du=\frac{1}{c}$
+\end{center}
+Optymalną wartością powyższego warunku jest $c=\sup_x\frac{f(x)}{g(x)}$.
+}
+\frame{
+\frametitle{Generatory wielowymiarowe}
+		\begin{itemize}
+		\item Wielowymiarowy rozkład jednostajny
+		\item Wielowymiarowy rozkład normalny
+		\end{itemize}
+}
+\frame{
+\frametitle{Generatory wielowymiarowe}
+\framesubtitle{Wielowymiarowy rozkład normalny}
+		Niech
+\begin{center}
+A=
+$\begin{bmatrix}
+\sigma_{1,1} & ... & \sigma_{1,n}\\
+... & ... & ...\\
+\sigma_{n,1} & ... & \sigma_{n,n}
+\end{bmatrix}$
+\end{center}
+Jesli $Z=(Z_1,...,Z_n)$ oraz każda składowa Z jest niezależna i ma taki sam rozkład N(0,1), to zmienna losowa CZ, gdzie C jest pewną nieosobliwą macierzą, ma rozkład normalny z macierzą kowariancji $CC^T$. Potrzebujemy więc macierz C taką, że $CC^T=A$
+\begin{center}
+$c_{i,1}=\frac{\sigma_{i,1}}{\sqrt{\sigma_{1,1}}}$\\
+$c_{i,i}=(\sigma_{i,i}-\sum_{r=1}^{i-1}c_{i,r}^2)^{1/2}$\\
+$c_{i,j}=\sigma_{j,j}^{-1}(\sigma_{i,j}-\sum_{r=1}^{j-1}c_{i,r}c_{j,r})$ gdy $i>j$\\
+$c_{i,j} = 0$ gdy i<j
+\end{center}
+}
+\frame{
+\frametitle{Testowanie poprawności generatorów}
+		\begin{itemize}
+		\item Opis metodologii
+		\item Test $\chi^2$
+		\item Test Kołomogorowa
+		\item Test pokerowy
+		\end{itemize}
+}
+\frame{
+\frametitle{Testowanie poprawności generatorów}
+\framesubtitle{Test $\chi^2$}
+		\begin{itemize}
+		\item Cel testu
+		\item Statystyka - $\phi = \sum_{i=1}^k\frac{(n_i - np_i)^2}{np_i}$
+		\end{itemize}
+}
+\frame{
+\frametitle{Testowanie poprawności generatorów}
+\framesubtitle{Test Kołomogorowa}
+		\begin{itemize}
+		\item Cel testu
+		\item Dystrybuanta empiryczna - $F_n(x)=\frac{1}{n}\sum_{j=1}^n1_{(-\infty, x]}(X_j)$\\gdzie $1_{(a,b)}$ to funckja charakterystyczna zbioru (a,b)
+		\item Statystyka - $D_n=\sup_{-\infty < x < +\infty} |F_n(x) - F(x)|$
+		\end{itemize}
+}
+\frame{
+\frametitle{Testowanie poprawności generatorów}
+\framesubtitle{Test pokerowy}
+		\begin{itemize}
+		\item Cel testu
+		\item Opis procesu testowania:\\$X_1, X_2,...,X_n$ $\to$ $Y_j=i$ jeśli $X_j \in (a_i, a_{i+1})$ $\to$ pięcioelementowe krotki $\to$ sprawdzenie rozkładu
+		\end{itemize}
+}
+\end{document}

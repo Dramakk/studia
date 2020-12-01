@@ -1,0 +1,32 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wypełnij deklarację</title>
+</head>
+
+<body>
+    <% if(errorMessage !== '') { %>
+        <h2 style="color: red;"><%= errorMessage %></h2>
+    <% } %>
+    <form method="POST" action="/print">
+        <div>
+            Name: <input type='text' name='name' value='<%= name%>' />
+        </div>
+        <div>
+            Surname: <input type='text' name='surname' value='<%= surname%>' />
+        </div>
+        <% for (var i=0; i<10; i++) { %>
+            <div>
+                Zadanie <%= i+1 %> <input type='number' name='<%- i%>' value='<%- zadania[i] %>'/>
+            </div>
+        <% } %>
+        <button>Wyślij deklarację</button>
+    </form>
+</body>
+
+</html>

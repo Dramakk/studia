@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dramak/Pulpit/studia/lato2020/AiSD/pracowniaB/main.cpp
+utility
+-
+vector
+-
+cstdlib
+-
+vector
+-
+iostream
+-
+algorithm
+-
+bits/stdc++.h
+-
+

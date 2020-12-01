@@ -1,0 +1,16 @@
+Generator i sprawdzaczka małych testów do pracowni B.
+
+1. Skorzystaj z wygenerowanych testów lub wygeneruj swoje za pomocą skryptu generujtesty.py
+> python3 generujtesty.py 10
+gdzie 10 to liczba testów do wygenerowania
+
+2. 
+LINUX) Jeśli korzystasz z konsoli bash, uruchom skypt check.sh z parametrem liczby testów.
+Twój program powinien znajodować się w tym samym folderze i mieć nazwę main - nie main.exe czy podobne.
+[>] chmod +x check.sh
+> check.sh 10
+
+WINDOWS) Otwórz okno programu cmd.exe w folderze z plikiem checkwin.bat.
+Uruchom skrypt checkwin.bat z parametrem liczby testów.
+Twój program powinien znajdować się w tym samym folderze i mieć nazwę main.exe
+> checkwin.bat 10

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/pracowniaD.dir/main.cpp.o  -o pracowniaD 

@@ -1,0 +1,45 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Widok deklaracji</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <% for (var i=0; i < 10; i++) { %>
+            <th>
+                Zadanie <%= i+1 %>
+            </th>
+            <% } %>
+        </thead>
+        <tbody>
+            <td><%= name%></td>
+            <td><%= surname%></td>
+            <% for (var i=0; i < 10; i++) { %>
+            <td>
+                <%- zadania[i] %>
+            </td>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

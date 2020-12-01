@@ -1,0 +1,3 @@
+/home/dramak/Pulpit/studia/lato2020/AiSD/pracowniaD/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dramak/Pulpit/studia/lato2020/AiSD/pracowniaD/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dramak/Pulpit/studia/lato2020/AiSD/pracowniaD/cmake-build-debug/CMakeFiles/pracowniaD.dir
