@@ -1,0 +1,96 @@
+#Zadanie 1
+less:
+	-X nie wysyla na poczatku komunikatu inicjalizujacego, dzieki temu nie czyscimy terminala
+	-R usuwa wszystkie escape sequence, ale zostawia kolory
+	-E automatycznie wylacza less po napotkaniu EOF
+ls:
+	-l wyswietla wierszowo z uprawnieniami, data modyfikacji, rozmiar itd.
+	-A nie wyswietla .. i .
+	-F dodaje oznaczenia do plikow (katalog /, wykonywalny *, link @ itd)
+	-b wyświetla puste znaki, zamiast zamykania w apostrofy
+	-h rozmiary plikow w normalnych jednostkach :)
+	-v posortuje po liczbach nie po znakach np. a120 i a13 bedzie wyswietlone poprawnie
+#Zadanie 2
+Grep służy do wyszukiwania wzorców w tekście. Dajemy plik (kilka plików) i regex (albo kilka) na podstawie których przeszukuje wszystkie podane pliki
+-e pattern szuka patternu
+-f szuka patternow zawartych w liniach w pliku
+-i ignorowanie wielkosci znakow
+--no-ignore-case bez ignorowania znakow nadpisuje ignorowanie
+-v wszystkie liinie ktore nie zawieraja patternu
+-w --word-regexp znajduje cale slowa
+-x --line-regexp jesli cala linia
+
+flagi do wypisywania
+-c ile razy znalazlo
+-L wypisuje nazwy plikow w ktorych nie znalezlismy
+-l w ktorych znalezlismy
+-m x pierwsze x wystapien
+-o wypisze tylko co znalezlismy
+-q nic nie wypisuj
+-s wylacza wypisywanie bledow
+output line prefix
+-b offset na ktorym zaczyna sie znaleziony pattern
+-H z nazwa pliku
+-h bez nazw pliku
+--label nadaje label dla pliku
+-n ktora linia
+-T 
+Regexy:
+	\ - escape character
+	? - opconalny wystepuje conahjmniej raz
+	* - 0+
+	+ - 1+
+	{N} - dokładnie N
+	{N,} - >= N
+	{,N} - <= N
+	{N, M} - od N do M
+	| - or
+	() - zbija w grupe
+	[] - jakikolwiek znak ze srodka
+	[^] - wszystkie znaki oprocz srodka
+	\b - pusty znak na krancach slowa
+	\B - pusty znak ale nie na koncu slowa
+	\< - pusty znak na poczatku slowa
+	\> - na koncu
+	\w - alfanumeryczne
+	\W - niealfanumeryczne
+	\s - match whitespace
+	\S - match wszystko co nie jest whitespace
+	\liczba referencja do grupy
+
+#Zadanie 3
+Jak sama nazwa wskazuje find znajduje pliki spełniające pewne podane przez nas warunki przeszukując drzewo katalogów zaczynając od podanego (jeżeli nie jest podany, szuka w obecnym)
+Możemy podać opcje 
+	-H: Do not follow symbolic links, except while processing the command line arguments.  When find examines or prints information about files,  the  information  used  shall  be
+              taken  from the properties of the symbolic link itself, 
+    -P: nigdy nie przechodzimy linkow symbolicznych, 
+    -L: przechodzimy linki symboliczne ale bierzemy informacje o pliku na ktory wskazuja
+Ogolne uzycie polega na find (flagi dotyczace linkow) (-D opcje debugowania) (-Opoziom optymalizacji) (punkt startowy) (wyrazenie)
+Mamy 4 poziomy optymalizacji (0=1,2,3), defaultowo ustawiony jest 1, optymalizacja polega na przeorganizowaniu naszych warunkow z wyrazenia tak, aby wykonywaly sie szybciej :)
+Wyrazenia mozemy podzielic na 5 typy:
+	Actions: np. -delete, -print ktore wypisze nazwe znalezionego pliku na standardowe wyjscie, zazwyczaj zwracaja one true lub false w zaleznosci od powodzenia dzialania
+	-print jest automatycznie wywolywane dla plikow, ktore spelniaja cale wyrazenie
+	Global options: zawsze zwracaja true i powinny byc umieszczane na samym poczatku wyrazenia np. -depth (mowi, ze mamy przechodzic drzewo plikow w głąb), -max-depth okresla maksyma-
+	lne zagłębienie
+	Positional options:	wpływają na opcje występujące po nich, np. zmiana typu regexu za pomocą -regextype type albo zmiana startu mierzenia czasu na poczatek obecnego dnia a nie
+	24h wstecz (-daystart)
+	Operatory: -o (or) -a (and) kiedy nie napiszemy, zakladane jest -a
+	Testy: +n wieksze niz n
+		   -n mniejsze niz n
+		   n rowno n
+
+		   Przykladowe testy:
+		   	-atime n pliki, ktore ostatnio uzyto n*24h (<, >, = w zaleznosci od operatora przy n)
+		   	-mmin n modyfikowany n minut temu
+		   	-mtime to samo dla n*24h
+		   	-user plik uzytkownika
+		   	-name nazwa, moze byc regex
+		   	-regex pattern znajduje pliki, ktorych sciezka matchuje sie z podanym paternem
+		   	-iregex to samo ale case insensitive
+		   	-path sciezka do pliku nie traktuje . i / jako specjalnych znakow
+		   	-ipath to samo ale case insensitive
+		   	-size n
+#Zadanie 4
+
+
+#Zadanie 9

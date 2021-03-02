@@ -1,0 +1,16 @@
+        READ  1
+        LOAD  =1
+        STORE 2
+        STORE 3
+petla:  LOAD  1
+        SUB   2
+        JZERO koniec
+        LOAD  2
+        ADD   =1
+        STORE 2
+        LOAD  3
+        MULT  2
+        STORE 3
+        JUMP  petla
+koniec: WRITE 3
+        HALT  
